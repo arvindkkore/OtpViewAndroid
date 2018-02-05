@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="OTPView">
+        <attr name="android:inputType" />
+        <attr name="android:textColor" />
+        <attr name="otp" format="string"/>
+        <attr name="length" format="integer"/>
+        <attr name="is_secure" format="boolean" />
+        <attr name="zero_allowed_begining" format="boolean" />
+        <attr name="secure_symbol" format="string" />
+        <attr name="border_color" format="color"/>
+        <attr name="inner_color" format="color"/>
+        <attr name="text_color" format="color" />
+        <attr name="BG_TYPE" format="enum">
+            <enum  name="NONE" value="0"/>
+            <enum  name="RECT" value="1"/>
+            <enum  name="UNDERLINE" value="2"/>
+        </attr>
+
+    </declare-styleable>
+
+</resources>

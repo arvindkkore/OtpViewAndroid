@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="otp_default_border">#3F51B5</color>
+    <color name="otp_default_text_color">#303F9F</color>
+    <color name="otp_default_background">#FF4081</color>
+</resources>
