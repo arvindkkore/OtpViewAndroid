@@ -1,16 +1,18 @@
 # OtpViewAndroid
 android otpView
+<pre>
 <dependency>
  <groupId>com.arvind.otpview</groupId>
   <artifactId>otp-view</artifactId>
   <version>0.0.2</version>
    <type>pom</type>
  </dependency>
+</pre>
 
 
 compile 'com.arvind.otpview:otp-view:0.0.2'
 
-
+<pre>
  <com.arvind.otpview.OTPView
         android:layout_centerInParent="true"
         android:id="@+id/otp_view"
@@ -25,7 +27,8 @@ compile 'com.arvind.otpview:otp-view:0.0.2'
         android:layout_height="wrap_content"
 
         />
-
+</pre>
+<pre>
  otpView= (OTPView) findViewById(R.id.otp_view);
         otpView.setListener(new OnCompleteListener() {
             @Override
@@ -33,3 +36,5 @@ compile 'com.arvind.otpview:otp-view:0.0.2'
                 Toast.makeText(MainActivity.this, "otp is "+otp, Toast.LENGTH_SHORT).show();
             }
         });
+
+   </pre>
