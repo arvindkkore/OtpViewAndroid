@@ -14,7 +14,7 @@ ext {
     siteUrl = 'https://github.com/arvindkkore/OtpViewAndroid'
     gitUrl = 'https://github.com/arvindkkore/OtpViewAndroid.git'
 
-    libraryVersion = '0.0.2'
+    libraryVersion = '0.0.3'
 
     developerId = 'arvindkkore'
     developerName = 'Arvind Kore'

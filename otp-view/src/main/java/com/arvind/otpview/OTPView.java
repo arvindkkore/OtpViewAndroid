@@ -1,10 +1,13 @@
 package com.arvind.otpview;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v4.graphics.TypefaceCompat;
 import android.text.Editable;
 import android.text.InputFilter;
@@ -164,6 +167,7 @@ public class OTPView extends FrameLayout
 
   public void disableKeypad() {
     OnTouchListener touchListener = new OnTouchListener() {
+      @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
       @Override
       public boolean onTouch(View v, MotionEvent event) {
         v.onTouchEvent(event);
@@ -215,6 +219,7 @@ public class OTPView extends FrameLayout
           }*/
       }
 
+      @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
       @Override
       public void afterTextChanged(Editable s) {
 
@@ -255,6 +260,7 @@ public class OTPView extends FrameLayout
   }
 
   OnClickListener onClickListener=new OnClickListener() {
+      @TargetApi(Build.VERSION_CODES.CUPCAKE)
       @Override
       public void onClick(View view) {
           Log.e("TAG", "onClick: " );
@@ -315,7 +321,7 @@ public class OTPView extends FrameLayout
 
                  break;
          }
-       //  textView.setBackground(getResources().getDrawable(R.drawable.sample_background));
+
          textView.setId(i);
          textView.setTag("text_"+i);
          textView.setLayoutParams(params);
@@ -333,6 +339,55 @@ public class OTPView extends FrameLayout
         );
     }
 
+    public void setLength(int length) {
+        this.length = length;
+    }
 
+    public void setColor(int color) {
+        this.color = color;
+    }
 
+    public void setText_color(int text_color) {
+        this.text_color = text_color;
+    }
+
+    public void setShow_secure(boolean show_secure) {
+        this.show_secure = show_secure;
+    }
+
+    public void setSecure_symbol(String secure_symbol) {
+        this.secure_symbol = secure_symbol;
+    }
+
+    public void setZero_allowed_begining(boolean zero_allowed_begining) {
+        this.zero_allowed_begining = zero_allowed_begining;
+    }
+
+    public void setBorder_color(int border_color) {
+        this.border_color = border_color;
+    }
+
+    public void setInner_color(int inner_color) {
+        this.inner_color = inner_color;
+    }
+
+    public void setShow_placeholder(boolean show_placeholder) {
+        this.show_placeholder = show_placeholder;
+    }
+
+    public void setPlaceholder(String placeholder) {
+        this.placeholder = placeholder;
+    }
+
+    public void setBG_TYPE(int BG_TYPE) {
+        this.BG_TYPE = BG_TYPE;
+    }
+
+    public void setMin_length(int min_length) {
+        this.min_length = min_length;
+    }
+
+    public void setMax_length(int max_length) {
+        this.max_length = max_length;
+    }
 }
