@@ -16,9 +16,7 @@
     </dependency>
    ```
    ## Usage
-   #### Custom:
-
-   ``` in xml
+   ```xml
    <com.arvind.otpview.OTPView
            android:layout_centerInParent="true"
            android:id="@+id/otp_view"
@@ -32,8 +30,8 @@
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
            />
-
-  ``` in View
+```
+  ```java
 otpView= (OTPView) findViewById(R.id.otp_view);
         otpView.setListener(new OnCompleteListener() {
             @Override
@@ -41,3 +39,4 @@ otpView= (OTPView) findViewById(R.id.otp_view);
                 Toast.makeText(MainActivity.this, "otp is "+otp, Toast.LENGTH_SHORT).show();
             }
         });
+```
