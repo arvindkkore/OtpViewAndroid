@@ -11,7 +11,7 @@
    <dependency>
     <groupId>com.arvind.otpview</groupId>
      <artifactId>otp-view</artifactId>
-     <version>0.0.2</version>
+     <version>0.0.3</version>
       <type>pom</type>
     </dependency>
    ```
