@@ -4,7 +4,7 @@
    ## Download
    Grab via Gradle:
    ```java
-   compile 'com.arvind.otpview:otp-view:0.0.3'
+   compile 'com.arvind.otpview:otp-view:0.0.4'
    ```
    Or Maven:
    ```java
