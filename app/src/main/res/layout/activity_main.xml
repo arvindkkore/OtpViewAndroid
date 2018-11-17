@@ -1,29 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_main"
+    android:layout_gravity="center"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.arvind.otpviewandroid.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!" />
+    <ScrollView
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:gravity="center_horizontal"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.arvind.otpview.OTPView
+            android:layout_centerInParent="true"
+            android:id="@+id/otp_view1"
+            app:secure_symbol="*"
+            app:is_secure="true"
+            app:zero_allowed_begining="false"
+            app:BG_TYPE="NONE"
+            app:border_color="@color/otp_default_background"
+            app:inner_color="@color/colorPrimaryDark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:otp_font_textSize="20sp"
+            app:text_color="#000"
+            app:otp_font_boxSpace="10dp" />
 
-    <com.arvind.otpview.OTPView
-        android:layout_centerInParent="true"
-        android:id="@+id/otp_view"
-        app:length="6"
-        app:secure_symbol="*"
-        app:is_secure="true"
-        app:zero_allowed_begining="false"
-        app:BG_TYPE="UNDERLINE"
-        app:border_color="@color/colorPrimaryDark"
-        app:inner_color="@color/colorAccent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        <com.arvind.otpview.OTPView
+            android:layout_centerInParent="true"
+            android:id="@+id/otp_view2"
+            app:secure_symbol="*"
+            app:is_secure="true"
+            app:zero_allowed_begining="false"
+            app:BG_TYPE="UNDERLINE"
+            app:border_color="@color/otp_default_background"
+            app:inner_color="@color/colorPrimaryDark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:otp_font_textSize="20sp"
+            app:text_color="@color/colorPrimary"
+            app:otp_font_boxSpace="10dp" />
 
-        />
-</RelativeLayout>
+        <com.arvind.otpview.OTPView
+            android:layout_centerInParent="true"
+            android:id="@+id/otp_view3"
+            app:secure_symbol="*#"
+            app:is_secure="true"
+            app:zero_allowed_begining="false"
+            app:BG_TYPE="UNDERLINE"
+            app:border_color="@color/otp_default_background"
+            app:inner_color="@color/colorPrimaryDark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:otp_font_textSize="20sp"
+            app:text_color="@color/otp_default_border"
+            app:otp_font_boxSpace="10dp" />
+
+        <com.arvind.otpview.OTPView
+            android:layout_centerInParent="true"
+            android:id="@+id/otp_view"
+            app:length="6"
+            app:secure_symbol="*"
+            app:is_secure="false"
+            app:zero_allowed_begining="false"
+            app:BG_TYPE="RECT"
+            app:border_color="@color/otp_default_background"
+            app:inner_color="@color/colorPrimaryDark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:otp_font_textSize="20sp"
+            app:text_color="#fff"
+            app:otp_font_boxSpace="10dp" />
+
+        <com.arvind.otpview.OTPView
+            android:layout_centerInParent="true"
+            android:id="@+id/otp_view6"
+            app:length="6"
+            app:secure_symbol="*"
+            app:is_secure="true"
+            app:zero_allowed_begining="false"
+            app:BG_TYPE="RECT"
+            app:border_color="@color/otp_default_background"
+            app:inner_color="@color/colorPrimaryDark"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:otp_font_textSize="20sp"
+            app:text_color="#fff"
+            app:otp="123456"
+            app:otp_font_boxSpace="10dp" />
+    </LinearLayout>
+
+</ScrollView>
+ </LinearLayout>

@@ -4,11 +4,13 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
-import android.support.v4.graphics.TypefaceCompat;
+
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
@@ -20,6 +22,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -33,7 +36,12 @@ import java.util.List;
 
 public class OTPView extends FrameLayout
 {
-  OnCompleteListener  onCompleteListener;
+  private static final float DEFAULT_SPACE = 16;
+  private static final float DEFAULT_FONTSIZE = 10;
+    private static final int DEFAULT_BORDER_COLOR = 0xff000000;
+    private static final int DEFAULT_INNER_COLOR = 0xff000000;
+    private static final int DEFAULT_TEXT_COLOR = 0xff000000;
+    OnCompleteListener  onCompleteListener;
   List<TextView> textViews=new ArrayList<>();
   private EditText otp_view;
   private Context context;
@@ -50,10 +58,13 @@ public class OTPView extends FrameLayout
   int BG_TYPE;
   int min_length=3;
   int max_length=6;
-  TypefaceCompat typefaceCompat;
-  LinearLayout linearLayout_root;
 
-  public OTPView(Context context) {
+  LinearLayout linearLayout_root;
+  int size =12;
+  private float fontSize=DEFAULT_FONTSIZE;
+  private float box_spacing=DEFAULT_SPACE;
+
+    public OTPView(Context context) {
     super(context);
     this.context=context;
     init(null);
@@ -79,15 +90,24 @@ public class OTPView extends FrameLayout
 
       show_secure=styles.getBoolean(R.styleable.OTPView_is_secure,false);
       zero_allowed_begining=styles.getBoolean(R.styleable.OTPView_zero_allowed_begining,false);
+      size=styles.getInteger(R.styleable.OTPView_otp_font_size,12);
+
+      fontSize = styles.getDimension(R.styleable.OTPView_otp_font_textSize, DEFAULT_FONTSIZE);
+      box_spacing = styles.getDimension(R.styleable.OTPView_otp_font_boxSpace, DEFAULT_SPACE);
+      //color = styles.getColor(R.styleable.OTPView_android_textColor, Color.parseColor("#000000") );
       secure_symbol=styles.getString(R.styleable.OTPView_secure_symbol);
+      if (secure_symbol.length()>1)
+      {
+        secure_symbol=secure_symbol.substring(0,1);
+      }
       length=styles.getInt(R.styleable.OTPView_length,min_length);
       if (length>max_length)
       {
          length=max_length;
       }
-      border_color = styles.getColor(R.styleable.OTPView_border_color, 0xff000000);
-      inner_color = styles.getColor(R.styleable.OTPView_inner_color, 0xff000000);
-      text_color = styles.getColor(R.styleable.OTPView_text_color, 0xff000000);
+      border_color = styles.getColor(R.styleable.OTPView_border_color, DEFAULT_BORDER_COLOR);
+      inner_color = styles.getColor(R.styleable.OTPView_inner_color, DEFAULT_INNER_COLOR);
+      text_color = styles.getColor(R.styleable.OTPView_text_color, DEFAULT_TEXT_COLOR);
       BG_TYPE=styles.getInteger(R.styleable.OTPView_BG_TYPE,0);
       Log.e("TAG", "init: "+BG_TYPE);
       linearLayout_root=(LinearLayout) findViewById(R.id.root_view);
@@ -213,10 +233,10 @@ public class OTPView extends FrameLayout
       @Override
       public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-         /* if (otp_view.getText().toString().matches("^0") && !zero_allowed_begining)
+          if (otp_view.getText().toString().matches("^0") && !zero_allowed_begining)
           {
               otp_view.setText("");
-          }*/
+          }
       }
 
       @RequiresApi(api = Build.VERSION_CODES.CUPCAKE)
@@ -294,19 +314,24 @@ public class OTPView extends FrameLayout
     {
        for (int i=0;i<length;i++)
        {
-         LinearLayout.LayoutParams params= new LinearLayout.LayoutParams(100, 100);
-         params.setMargins(0,0,16,0);
+
+         int test =(int)fontSize*2;
+         LinearLayout.LayoutParams params= new LinearLayout.LayoutParams(test, test);
+         params.setMargins(0,0,(int)box_spacing,0);
          TextView textView=new TextView(getContext());
          textView.setTextColor(text_color);
          textView.setGravity(Gravity.CENTER );
-         textView.setTextSize(20);
+         textView.setTextSize(fontSize);
+         textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, fontSize);
+         textView.setPadding(10,10,5,5);
+        // textView.setMinWidth(50);
          GradientDrawable drawable;
          switch (BG_TYPE)
          {
              case 0:
               break;
               case 1:
-                 textView.setBackgroundResource(R.drawable.sample_background);
+                     textView.setBackgroundResource(R.drawable.sample_background);
                      drawable = (GradientDrawable) textView.getBackground();
                      drawable.setColor(inner_color);
                      drawable.setStroke(2,border_color);
@@ -389,5 +414,14 @@ public class OTPView extends FrameLayout
 
     public void setMax_length(int max_length) {
         this.max_length = max_length;
+    }
+
+    public void setFont(Typeface font)
+    {
+        for (int i=0;i < length;i++)
+        {
+            TextView textView= this.findViewWithTag("text_"+i);
+            textView.setTypeface(font);
+        }
     }
 }
